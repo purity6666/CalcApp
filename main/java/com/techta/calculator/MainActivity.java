@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button b1, b2, b3, b4, b5, b6, b7, b8, b9, b0, bDiv, bMultiply, bPlus, bMinus, bC, bRes;
+    private Button b1, b2, b3, b4, b5, b6, b7, b8, b9, b0, bDiv, bMultiply, bPlus, bMinus, bC, bRes, bDecimal;
     private TextView txtRes, txtControl;
     private final char ADDITION = '+';
     private final char SUBTRACTION = '-';
@@ -74,6 +74,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bC = findViewById(R.id.clearBtn);
         bC.setOnClickListener(this);
 
+        bDecimal = findViewById(R.id.decimalBtn);
+        bDecimal.setOnClickListener(this);
+
         bRes = findViewById(R.id.equalBtn);
         bRes.setOnClickListener(this);
 
@@ -105,9 +108,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     break;
             }
         }
-        else{
-            val1 = Double.parseDouble(txtControl.getText().toString());
-        }
+        else val1 = Double.parseDouble(txtControl.getText().toString());
     }
 
     @SuppressLint("SetTextI18n")
@@ -116,44 +117,61 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.oneBtn:
                 txtControl.setText(txtControl.getText().toString() + "1");
+                break;
             case R.id.twoBtn:
                 txtControl.setText(txtControl.getText().toString() + "2");
+                break;
             case R.id.threeBtn:
                 txtControl.setText(txtControl.getText().toString() + "3");
+                break;
             case R.id.fourBtn:
                 txtControl.setText(txtControl.getText().toString() + "4");
+                break;
             case R.id.fiveBtn:
                 txtControl.setText(txtControl.getText().toString() + "5");
+                break;
             case R.id.sixBtn:
                 txtControl.setText(txtControl.getText().toString() + "6");
+                break;
             case R.id.sevenBtn:
                 txtControl.setText(txtControl.getText().toString() + "7");
+                break;
             case R.id.eightBtn:
                 txtControl.setText(txtControl.getText().toString() + "8");
+                break;
             case R.id.nineBtn:
                 txtControl.setText(txtControl.getText().toString() + "9");
+                break;
             case R.id.zeroBtn:
                 txtControl.setText(txtControl.getText().toString() + "0");
+                break;
+            case R.id.decimalBtn:
+                txtControl.setText(txtControl.getText().toString() + ",");
+                break;
             case R.id.divisionBtn:
                 compute();
                 ACTION = DIVISION;
                 txtRes.setText(val1 + "/");
                 txtControl.setText(null);
+                break;
             case R.id.multiplyBtn:
                 compute();
-                ACTION = DIVISION;
-                txtRes.setText(val1 + "/");
+                ACTION = MULTIPLICATION;
+                txtRes.setText(val1 + "*");
                 txtControl.setText(null);
+                break;
             case R.id.minusBtn:
                 compute();
-                ACTION = DIVISION;
-                txtRes.setText(val1 + "/");
+                ACTION = SUBTRACTION;
+                txtRes.setText(val1 + "-");
                 txtControl.setText(null);
+                break;
             case R.id.plusBtn:
                 compute();
-                ACTION = DIVISION;
-                txtRes.setText(val1 + "/");
+                ACTION = ADDITION;
+                txtRes.setText(val1 + "+");
                 txtControl.setText(null);
+                break;
             case R.id.clearBtn:
                 if(txtControl.getText().length() > 0){
                     CharSequence name = txtControl.getText().toString();
@@ -165,11 +183,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     txtControl.setText(null);
                     txtRes.setText(null);
                 }
+                break;
             case R.id.equalBtn:
                 compute();
                 ACTION = EQU;
                 txtRes.setText(txtRes.getText().toString() + val2 + "=" + val1);
                 txtControl.setText(null);
+                break;
         }
     }
 }
